@@ -1,3 +1,19 @@
 <h1>Welcome to the Budget App</h1>
 
-<p>This is the homepage for the Budget App (WIP)</p>
+
+<% if logged_in? %>
+<h3>Your Budgets:</h3>
+  <% if @budgets.any? %>
+    <ol class="budgets">
+      <%= render @budgets %>
+    </ol>
+  <% else %>
+    <p>You don't have any budgets yet, click Create Budget to make one.</p>
+  <% end %>
+<% else %>
+  <div class="center jumbotron">
+    <h2>This is the Budget App.  You can be the master of your finances.</h2>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>
+  
