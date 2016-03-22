@@ -1,9 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>Budget name:</strong>
   <%= @budget.title %>
 </p>
 
-<%= link_to 'Edit', edit_budget_path(@budget) %> |
+<%= link_to 'Edit', edit_budget_path(@budget) %> | 
+<%= link_to "Delete", @budget, method: :delete,
+                    data: { confirm: "Are you sure you'd like to delete this budget?" } %> | 
 <%= link_to 'Back', budgets_path %>

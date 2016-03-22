@@ -26,7 +26,7 @@ class BudgetsController < ApplicationController
   # POST /budgets
   # POST /budgets.json
   def create
-    @budget = Budget.new(budget_params)
+    @budget = current_user.budgets.new(budget_params)
 
     respond_to do |format|
       if @budget.save
@@ -58,7 +58,7 @@ class BudgetsController < ApplicationController
   def destroy
     @budget.destroy
     respond_to do |format|
-      format.html { redirect_to budgets_url, notice: 'Budget was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Budget was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

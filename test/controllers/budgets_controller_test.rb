@@ -52,6 +52,6 @@ class BudgetsControllerTest < ActionController::TestCase
       delete :destroy, id: @budget
     end
 
-    assert_redirected_to budgets_path
+    assert_redirected_to root_url
   end
 end

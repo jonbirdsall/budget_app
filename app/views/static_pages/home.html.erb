@@ -10,6 +10,7 @@
   <% else %>
     <p>You don't have any budgets yet, click Create Budget to make one.</p>
   <% end %>
+  <%= link_to "Create budget", new_budget_path, class: "btn btn-primary" %>
 <% else %>
   <div class="center jumbotron">
     <h2>This is the Budget App.  You can be the master of your finances.</h2>
