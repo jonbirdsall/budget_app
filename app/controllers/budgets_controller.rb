@@ -1,10 +1,12 @@
 class BudgetsController < ApplicationController
-  before_action :set_budget, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
+  
 
   # GET /budgets
   # GET /budgets.json
   def index
-    @budgets = Budget.all
+    @budgets = current_user.budgets.all
   end
 
   # GET /budgets/1
@@ -28,8 +30,8 @@ class BudgetsController < ApplicationController
 
     respond_to do |format|
       if @budget.save
-        format.html { redirect_to @budget, notice: 'Budget was successfully created.' }
-        format.json { render :show, status: :created, location: @budget }
+        format.html { redirect_to root_url, notice: 'Budget was successfully created.' }
+        format.json { render :show, status: :created, location: :root }
       else
         format.html { render :new }
         format.json { render json: @budget.errors, status: :unprocessable_entity }
@@ -63,8 +65,9 @@ class BudgetsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_budget
-      @budget = Budget.find(params[:id])
+    def correct_user
+      @budget = current_user.budgets.find_by(id: params[:id])
+      redirect_to root_url if @budget.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
