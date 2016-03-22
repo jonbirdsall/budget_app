@@ -19,4 +19,13 @@ class CreatingBudgetsTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to root_url
   end
+  
+  test "should not create budget with empty title" do
+    log_in_as(@user)
+    assert_no_difference 'Budget.count' do
+      post budgets_path, budget: { title: "" }
+    end
+    
+    assert_template "new"
+  end
 end

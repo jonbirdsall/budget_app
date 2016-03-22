@@ -45,7 +45,7 @@ class BudgetsController < ApplicationController
     respond_to do |format|
       if @budget.update(budget_params)
         format.html { redirect_to @budget, notice: 'Budget was successfully updated.' }
-        format.json { render :show, status: :ok, location: @budget }
+        format.json { render :home, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @budget.errors, status: :unprocessable_entity }

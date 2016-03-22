@@ -19,15 +19,6 @@ class BudgetsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create budget" do
-    log_in_as @user
-    assert_difference('Budget.count') do
-      post :create, budget: { title: @budget.title }
-    end
-
-    assert_redirected_to root_url
-  end
-
   test "should show budget" do
     log_in_as @user
     get :show, id: @budget

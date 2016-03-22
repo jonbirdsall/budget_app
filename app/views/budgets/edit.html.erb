@@ -1,6 +1,29 @@
 <h1>Editing Budget</h1>
 
-<%= render 'form' %>
+<%= form_for(@budget) do |f| %>
+  <% if @budget.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@budget.errors.count, "error") %> prohibited this budget from being saved:</h2>
+
+      <ul>
+      <% @budget.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="form-group">
+  <div class="field">
+    <%= f.label :title, "Enter budget name:" %><br>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+</div>
+  <div class="actions">
+    <%= f.submit "Modify budget", class: "btn btn-primary" %>
+    <%= link_to "Cancel", @budget, class: "btn btn-default" %>
+  </div>
+
+<% end %>
 
 <%= link_to 'Show', @budget %> |
 <%= link_to 'Back', budgets_path %>
