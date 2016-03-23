@@ -1,0 +1,9 @@
+<tr>
+  <td><%= link_to income.source, income %></td>
+  <td><%= income.amount %></td>
+  <td>
+    <%= link_to 'View', income %> | 
+    <%= link_to 'Edit', edit_income_path(income) %> | 
+    <%= link_to 'Delete', income, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </td>
+</tr>

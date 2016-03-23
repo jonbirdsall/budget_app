@@ -7,3 +7,24 @@
                     data: { confirm: "Are you sure you'd like to delete this budget?" } %>
                     
 
+<% if @incomes.any? %>
+<div id="incomes">
+  <h3><%= link_to "Incomes:", budget_incomes_path(@budget) %></h3>
+  <table class='table table-striped'>
+    <thead>
+      <tr>
+        <th>Income source</th>
+        <th>Amount</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <%= render @incomes %>
+    <tr>
+      <td id="total_label">Total Income Amount:</td>
+      <td colspan="2"><%= @incomes.sum('amount') %></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<% end %>

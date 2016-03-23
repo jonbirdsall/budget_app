@@ -12,6 +12,7 @@ class BudgetsController < ApplicationController
   # GET /budgets/1
   # GET /budgets/1.json
   def show
+    @incomes = @budget.incomes.all
   end
 
   # GET /budgets/new

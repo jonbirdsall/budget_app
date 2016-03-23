@@ -1,0 +1,26 @@
+<% provide(:title, "Incomes for #{@budget.title}") %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Incomes for <%= @budget.title %></h1>
+<div id="incomes">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Income source</th>
+      <th>Amount</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @incomes %>
+    <tr>
+      <td id="total_label">Total Income Amount:</td>
+      <td colspan="2"><%= @incomes.sum('amount') %></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<%= link_to "<< Back to #{@budget.title}", @budget %>

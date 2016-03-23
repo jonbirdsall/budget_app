@@ -14,4 +14,25 @@ user = User.create!( name: "Example User",
               activated: true,
               activated_at: Time.zone.now )
               
-user.budgets.create!( title: "My First Budget" )
+budget = user.budgets.create!( title: "My First Budget" )
+
+budget.incomes.create!( source: "Income source 1", 
+                        amount: 1234.50 )
+budget.incomes.create!( source: "Income source 2",
+                        amount: 4321.50 )
+                        
+                        
+second_user = User.create!( name: "Second User",
+                            email: "example2@example.com",
+                            password: "foobar",
+                            password_confirmation: "foobar",
+                            activated: true,
+                            activated_at: Time.zone.now )
+                            
+second_budget = second_user.budgets.create!( title: "Second User Budget")
+
+second_budget.incomes.create!( source: "Second Income 1",
+                                amount: 1234.50 )
+                                
+second_budget.incomes.create!( source: "Second Income 2",
+                                amount: 4321.50 )

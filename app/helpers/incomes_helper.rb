@@ -1,7 +1,8 @@
-module BudgetsHelper
+module IncomesHelper
   def total_income(incomes)
+    total = 0
     incomes.each do |income|
-      total_income =+ income.amount
+      total += income.amount
     end
   end
 end

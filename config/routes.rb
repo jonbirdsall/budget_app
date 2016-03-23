@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  
+
   get 'password_resets/new'
   
   get 'password_resets/edit'
   
-  resources :budgets
+  resources :budgets do
+    resources :incomes, shallow: true
+  end
   
   root 'static_pages#home'
   
