@@ -13,6 +13,13 @@ user = User.create!( name: "Example User",
               admin: true,
               activated: true,
               activated_at: Time.zone.now )
+
+User.create!( name: "Neoix",
+              email: "neo@example.com",
+              password: "foobar",
+              password_confirmation: "foobar",
+              activated: true,
+              activated_at: Time.zone.now )
               
 budget = user.budgets.create!( title: "My First Budget" )
 

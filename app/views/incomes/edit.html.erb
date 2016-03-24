@@ -1,2 +1,19 @@
-<h1>Incomes#edit</h1>
-<p>Find me in app/views/incomes/edit.html.erb</p>
+<h1>Edit Income:</h1>
+
+
+<div class="row"></div>
+<%= form_for @income do |f| %>
+  
+    <%= render 'shared/error_messages', object: f.object %>
+    
+    <%= f.label :source %>
+    <%= f.text_field :source, class: 'form-control' %>
+    
+    <%= f.label :amount %>
+    <%= f.text_field :amount, class: 'form-control' %>
+    
+    <br />
+    
+    <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>
+</div>

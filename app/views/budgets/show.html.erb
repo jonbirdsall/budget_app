@@ -22,9 +22,15 @@
     <%= render @incomes %>
     <tr>
       <td id="total_label">Total Income Amount:</td>
-      <td colspan="2"><%= @incomes.sum('amount') %></td>
+      <td><%= @incomes.sum('amount') %></td>
+      <td><%= link_to "+ Add new source", new_budget_income_path(@budget),
+                  class: "btn btn-sm btn-primary" %></td>
     </tr>
     </tbody>
   </table>
 </div>
+<% else %>
+<p>You don't have any income sources yet.  Click "Add new source" to add one.</p>
+      <%= link_to "+ Add new source", new_budget_income_path(@budget),
+                  class: "btn btn-sm btn-primary" %>
 <% end %>
