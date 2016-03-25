@@ -1,0 +1,19 @@
+Expense model
+
+category model
+has_many expenses
+
+budget model
+has_many expenses through categories
+
+problem is category serves as a collection of expenses 
+  instead of just a data item
+  
+
+
+
+category could just be a field in the expense model and is set 
+    from a select.  this would allow custom categories and could simply
+    be listed after the pre-set categories.  pre-set categories would
+    be an application constant array.  display of categories simply looped
+    through in the view, then add any left at the end.
