@@ -1,0 +1,37 @@
+<% provide(:title, "Expenses for #{@budget.title}") %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Expenses for <%= @budget.title %></h1>
+
+<% if @expenses.any? %>
+<div id="expenses">
+  <h3><%= link_to "Expenses:", budget_expenses_path(@budget) %></h3>
+  <table class='table table-striped'>
+    <thead>
+      <tr>
+        <th>Expense name</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <%= render @expenses %>
+    <tr>
+      <td class="total_label">Total Expense Amount:</td>
+      <td><%= @expenses.sum('amount') %></td>
+      <td></td>
+      <td><%= link_to "+ Add new expense", new_budget_expense_path(@budget),
+                  class: "btn btn-sm btn-primary" %></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<% else %>
+<p>You don't have any expenses yet.  Click "Add new expense" to add one.</p>
+      <%= link_to "+ Add new expense", new_budget_expense_path(@budget),
+                  class: "btn btn-sm btn-primary" %>
+<% end %>
+
+<%= link_to "<< Back to #{@budget.title}", @budget %>

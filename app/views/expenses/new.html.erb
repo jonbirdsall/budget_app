@@ -1,0 +1,23 @@
+<h1>Add new expense:</h1>
+<div class="container">
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+  <%= form_for @expense, url: budget_expenses_path do |f| %>
+    
+    <%= render 'shared/error_messages', object: f.object %>
+    
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+    
+    <%= f.label :amount %>
+    <%= f.text_field :amount, class: "form-control" %>
+    
+    <%= f.label :category %>
+    <%= f.collection_select(:category, @categories, :name, :name, class: "form-control" ) %>
+    
+    <%= f.submit "Save", class: "btn btn-primary" %>
+    <%= link_to "Cancel", request.referrer, class: "btn btn-default" %>
+  <% end %>
+</div>
+</div>
+</div>

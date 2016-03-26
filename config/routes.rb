@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   
   resources :budgets do
     resources :incomes, shallow: true
+    resources :expenses, shallow: true
   end
+  
+  resources :categories
   
   root 'static_pages#home'
   

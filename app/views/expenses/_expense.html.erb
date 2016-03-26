@@ -1,0 +1,10 @@
+<tr>
+  <td><%= link_to expense.name, expense %></td>
+  <td><%= number_to_currency(expense.amount) %></td>
+  <td><%= expense.category %></td>
+  <td>
+    <%= link_to 'View', expense %> | 
+    <%= link_to 'Edit', edit_expense_path(expense) %> | 
+    <%= link_to 'Delete', expense, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </td>
+</tr>

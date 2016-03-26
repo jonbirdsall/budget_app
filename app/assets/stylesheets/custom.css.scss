@@ -61,19 +61,37 @@ p {
 /* budgets */
 
 .budgets {
+  list-style: none;
   .timestamp {
   float: right;
   }
   li {
   padding-top: 10px;
   }
+  
 }
 
 
 /* incomes */
 
 #incomes {
-  #total_label {
+  .total_label {
     text-align: right;
   }
+}
+
+
+
+#expenses {
+  .total_label {
+    text-align: right;
+  }
+}
+
+
+
+/* totals */
+
+#totals {
+  margin-top: 30px;
 }

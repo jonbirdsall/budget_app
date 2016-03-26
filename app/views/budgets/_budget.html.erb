@@ -1,5 +1,5 @@
 <li id="budget-<%= budget.id %>">
-  <%= link_to budget.title, budget %>
+  <%= link_to budget.title, budget, class: "btn btn-info" %>
   <span class="timestamp">
     Updated <%= time_ago_in_words(budget.updated_at) %> ago.
   </span>

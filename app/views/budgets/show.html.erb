@@ -1,11 +1,32 @@
 <p>
-  <h2><%= @budget.title %></h2>
+  <h1><%= @budget.title %></h1>
 </p>
-
+<div class="center">
 <%= link_to 'Edit budget name', edit_budget_path(@budget) %> | 
 <%= link_to "Delete budget", @budget, method: :delete,
                     data: { confirm: "Are you sure you'd like to delete this budget?" } %>
-                    
+</div>
+<div id="totals" class="row">
+  <div class="col-md-4">
+    <div class="panel panel-info">
+      <div class="panel-heading">Total Monthly Income</div>
+      <div class="panel-body"><%= number_to_currency(@income_total) %></div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-info">
+      <div class="panel-heading">Total Monthly Expenses</div>
+      <div class="panel-body"><%= number_to_currency(@expense_total) %></div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-<%= @panel_type %>">
+      <div class="panel-heading"><%= @surplus_or_deficit %></div>
+      <div class="panel-body"><%= number_to_currency(@summary) %></div>
+    </div>
+  </div>
+</div>
+
 
 <% if @incomes.any? %>
 <div id="incomes">
@@ -15,14 +36,16 @@
       <tr>
         <th>Income source</th>
         <th>Amount</th>
+        <th></th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
     <%= render @incomes %>
     <tr>
-      <td id="total_label">Total Income Amount:</td>
-      <td><%= @incomes.sum('amount') %></td>
+      <td class="total_label">Total Income Amount:</td>
+      <td><%= number_to_currency(@income_total) %></td>
+      <td></td>
       <td><%= link_to "+ Add new source", new_budget_income_path(@budget),
                   class: "btn btn-sm btn-primary" %></td>
     </tr>
@@ -34,3 +57,37 @@
       <%= link_to "+ Add new source", new_budget_income_path(@budget),
                   class: "btn btn-sm btn-primary" %>
 <% end %>
+
+<% if @expenses.any? %>
+<div id="expenses">
+  <h3><%= link_to "Expenses:", budget_expenses_path(@budget) %></h3>
+  <table class='table table-striped'>
+    <thead>
+      <tr>
+        <th>Expense name</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <%= render @expenses %>
+    <tr>
+      <td class="total_label">Total Expense Amount:</td>
+      <td><%= number_to_currency(@expense_total) %></td>
+      <td></td>
+      <td><%= link_to "+ Add new expense", new_budget_expense_path(@budget),
+                  class: "btn btn-sm btn-primary" %></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<% else %>
+<p>You don't have any expenses yet.  Click "Add new expense" to add one.</p>
+      <%= link_to "+ Add new expense", new_budget_expense_path(@budget),
+                  class: "btn btn-sm btn-primary" %>
+<% end %>
+
+<div>
+  <%= link_to "<< Back to your budgets", root_url %>
+</div>

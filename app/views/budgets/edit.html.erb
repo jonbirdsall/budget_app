@@ -20,7 +20,7 @@
 </div>
   <div class="actions">
     <%= f.submit "Modify budget", class: "btn btn-primary" %>
-    <%= link_to "Cancel", @budget, class: "btn btn-default" %>
+    <%= link_to "Cancel", request.referrer, class: "btn btn-default" %>
   </div>
 
 <% end %>

@@ -1,18 +1,40 @@
 class BudgetsController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
-  
+  before_action :store_location
 
   # GET /budgets
   # GET /budgets.json
   def index
-    @budgets = current_user.budgets.all
+    @budgets = current_user.budgets.order(:updated_at)
   end
 
   # GET /budgets/1
   # GET /budgets/1.json
   def show
-    @incomes = @budget.incomes.all
+    if @incomes = @budget.incomes.all
+      @income_total = @incomes.sum('amount')
+    else
+      @income_total = 0
+    end
+    
+    if @expenses = @budget.expenses.order(:category)
+      @expense_total = @expenses.sum('amount')
+    else
+      @expense_total = 0
+    end
+    
+    @summary = @income_total - @expense_total
+    if @summary > 0
+      @surplus_or_deficit = "Monthly Surplus"
+      @panel_type = "success"
+    elsif @summary < 0
+      @surplus_or_deficit = "Monthly Deficit"
+      @panel_type = "danger"
+    else
+      @surplus_or_deficit = "Balanced Budget"
+      @panel_type = "warning"
+    end
   end
 
   # GET /budgets/new

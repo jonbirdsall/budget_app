@@ -1,5 +1,5 @@
 <h1>Add new income source</h1>
-<div class="row"></div>
+<div class="row">
 <%= form_for @income, url: budget_incomes_path do |f| %>
   
     <%= render 'shared/error_messages', object: f.object %>
@@ -13,5 +13,6 @@
     <br />
     
     <%= f.submit "Save", class: "btn btn-primary" %>
+    <%= link_to "Cancel", request.referrer, class: "btn btn-default" %>
 <% end %>
 </div>

@@ -1,0 +1,8 @@
+<h1><%= @expense.name %></h1>
+
+Amount: <%= @expense.amount %><br />
+Category: <%= @expense.category %>
+
+<div id="back_button">
+  <%= link_to "<< Back", session[:forwarding_url] || request.referrer, class: "btn btn-sm btn-default" %>
+</div>

@@ -1,20 +1,20 @@
-<h1>Welcome to the Budget App</h1>
+<h1>Welcome to Budgie</h1>
 
 
 <% if logged_in? %>
 <h3>Your Budgets:</h3>
+  <ul class="budgets">
   <% if @budgets.any? %>
-    <ol class="budgets">
       <%= render @budgets %>
-    </ol>
   <% else %>
     <p>You don't have any budgets yet, click Create Budget to make one.</p>
   <% end %>
-  <%= link_to "Create budget", new_budget_path, class: "btn btn-primary" %>
+  <li><%= link_to "+ Create budget", new_budget_path, class: "btn btn-success" %></li>
+  </ul>
 <% else %>
   <div class="center jumbotron">
     <h2>This is the Budget App.  You can be the master of your finances.</h2>
-    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-success" %>
   </div>
 <% end %>
   

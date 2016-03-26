@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   
   def home
     if logged_in?
-      @budgets = current_user.budgets.all || []
+      @budgets = current_user.budgets.order(updated_at: :desc) || []
     end 
   end
   

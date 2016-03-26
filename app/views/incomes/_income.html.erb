@@ -1,6 +1,7 @@
 <tr>
   <td><%= link_to income.source, income %></td>
-  <td><%= income.amount %></td>
+  <td><%= number_to_currency(income.amount) %></td>
+  <td></td>
   <td>
     <%= link_to 'View', income %> | 
     <%= link_to 'Edit', edit_income_path(income) %> | 
